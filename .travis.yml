@@ -1,0 +1,56 @@
+---
+language: python
+python: "2.7"
+
+# Use the new container infrastructure
+sudo: true
+
+# Install ansible
+addons:
+  apt:
+    packages:
+    - python-pip
+
+install:
+  # Install ansible
+  - pip install ansible
+
+  # Check ansible version
+  - ansible --version
+
+  # Create ansible.cfg with correct roles_path
+  - printf '[defaults]\nroles_path=../' >ansible.cfg
+
+script:
+  # Basic role syntax check
+  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+
+  # run once
+  - ansible-playbook tests/test.yml -i tests/inventory --connection=local --sudo
+
+  # show hostname
+  - hostname
+
+  # verify result
+  - >
+    hostname | grep -q "^newhostname$" 
+    && (echo 'hostnmae validated: pass' && exit 0)
+    || (echo 'hostname entry validated: fail' && exit 1)
+
+  # check hostname in /etc/hostname
+  - >
+    grep -q "^newhostname.newdomain.local$" /etc/hostname
+    && (echo '/etc/hostnmae validated: pass' && exit 0)
+    || (echo '/etc/hostname entry validated: fail' && exit 1)
+
+  # show /etc/hosts
+  - cat /etc/hosts
+
+  # check hostname in /etc/hosts
+  - >
+    grep -q "^{{ansible_default_ipv4}} newhostname.newdomain.local$" /etc/hosts
+    && (echo '/etc/hosts validated: pass' && exit 0)
+    || (echo '/etc/hosts entry validated: fail' && exit 1)
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

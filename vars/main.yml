@@ -1,0 +1,4 @@
+---
+ansible_hostname_domain_old: "{{ansible_domain}}"
+ansible_hostname_hostname_old: "{{ansible_hostname}}"
+ansible_hostname_primary_ip_old: "{{ansible_default_ipv4.address}}"
