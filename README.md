@@ -2,6 +2,7 @@ Role Name
 =========
 
 update hostname and related files
+on RedHat linux: /etc/hostname and /etc/hosts
 
 Requirements
 ------------
