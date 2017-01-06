@@ -1,4 +1,4 @@
 ---
-ansible_hostname_domain: "{{ansible_domain}}"
-ansible_hostname_hostname: "{{ansible_hostname}}"
-ansible_hostname_primary_ip: "{{ansible_default_ipv4.address}}"
+ansible_role_hostname_domain: "{{ansible_domain}}"
+ansible_role_hostname_hostname: "{{ansible_hostname}}"
+ansible_role_hostname_primary_ip: "{{ansible_default_ipv4.address}}"

@@ -12,10 +12,10 @@ None
 Role Variables
 --------------
   
-**ansible_hostname_domain**: the new domain name (optional)  
+**ansible_role_hostname_domain**: the new domain name (optional)  
 >  default: keep existing domain name as found in /etc/hosts
 
-**ansible_hostname_hostname**:  the new hostname (optional)  
+**ansible_role_hostname_hostname**:  the new hostname (optional)  
 >  default: keep existing hostname as found in /etc/hosts
 
 Dependencies
@@ -28,7 +28,7 @@ Example Playbook
 
     - hosts: localhost
       roles:
-         - { role: ansible_hostname, ansible_hostname_domain: newdomain.local, ansible_hostname_hostname: newhostname }
+         - { role: ansible_role_hostname, ansible_role_hostname_domain: newdomain.local, ansible_role_hostname_hostname: newhostname }
 
 License
 -------

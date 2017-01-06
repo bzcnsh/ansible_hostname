@@ -1,15 +1,15 @@
 ---
 - name: define variables
   set_fact:
-     hosts_line: "{{ansible_hostname_primary_ip}} {{ansible_hostname_hostname}}.{{ansible_hostname_domain}} {{ansible_hostname_hostname}}"
-     hostname_line: "{{ansible_hostname_hostname}}.{{ansible_hostname_domain}}"
-  when: ansible_hostname_domain is defined and not ansible_hostname_domain==""
+     hosts_line: "{{ansible_role_hostname_primary_ip}} {{ansible_role_hostname_hostname}}.{{ansible_role_hostname_domain}} {{ansible_role_hostname_hostname}}"
+     hostname_line: "{{ansible_role_hostname_hostname}}.{{ansible_role_hostname_domain}}"
+  when: ansible_role_hostname_domain is defined and not ansible_role_hostname_domain==""
 
 - name: define vars
   set_fact:
-     hosts_line: "{{ansible_hostname_primary_ip}} {{ansible_hostname_hostname}}"
-     hostname_line: "{{ansible_hostname_hostname}}"
-  when: ansible_hostname_domain is not defined or ansible_hostname_domain==""
+     hosts_line: "{{ansible_role_hostname_primary_ip}} {{ansible_role_hostname_hostname}}"
+     hostname_line: "{{ansible_role_hostname_hostname}}"
+  when: ansible_role_hostname_domain is not defined or ansible_role_hostname_domain==""
 
 - name: run OS specific tasks
   include: "RedHat.yml"

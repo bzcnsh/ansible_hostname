@@ -4,7 +4,7 @@
   lineinfile:
     dest=/etc/hosts
     state=present
-    regexp='^\s*{{ansible_hostname_primary_ip}}\s'
+    regexp='^\s*{{ansible_role_hostname_primary_ip}}\s'
     line="{{hosts_line}}"
 
 - name: update /etc/hostname
@@ -13,5 +13,5 @@
     content="{{hostname_line}}"
 
 - name: reset hostname
-  command: hostname {{ansible_hostname_hostname}}
-  when: not ansible_hostname_hostname==ansible_hostname_hostname_old
+  command: hostname {{ansible_role_hostname_hostname}}
+  when: not ansible_role_hostname_hostname==ansible_role_hostname_hostname_old
